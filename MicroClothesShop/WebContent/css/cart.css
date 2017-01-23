@@ -1,0 +1,127 @@
+body {
+	padding: 0;
+	margin: 0;
+}
+
+#top {
+	margin-top: 0;
+	height: 40px;
+	width: 100%;
+	background-color: #eee;
+}
+
+#bodyer {
+	margin-top: 40;
+	width: 100%;
+}
+
+.shou {
+	
+	margin-left: 180px;
+	margin-top: 8;
+}
+
+.tou {
+
+	margin-left: 780px;
+	margin-top: 13;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:link {
+	color: #222;
+}
+
+a:visited {
+	color: #03a;
+}
+
+a:hover {
+	color: #a5e;
+}
+
+#tile {
+
+	margin-left: 180px;
+	margin-top: 15px; font-size : 28px;
+	text-indent: 5px;
+	font-size: 28px;
+}
+
+#tile b {
+	font-size: 34px;
+}
+
+#con {
+
+	margin-left: 240px;
+	margin-top: 75px;
+}
+
+.biaoti {
+
+	margin-left: 10px;
+	margin-top: 10px;
+	width: 900px;
+	height: 22px;
+	background-color: #eee;
+	border-bottom: 1px solid #aaa;
+}
+
+#cao {
+
+	margin-left: 11px;
+	margin-top: 40px;
+	width:900px;
+}
+
+.tt {
+	border: 1px solid #eee;
+}
+
+.ttr {
+	height: 150px;
+}
+
+.t1 {
+	width: 205px;
+}
+.t5{
+	width: 135px;
+}
+.t2 {
+	width: 200px;
+}
+
+.t3 {
+	width: 200px;
+}
+
+.t4 {
+	width: 150px;
+}
+#buy{
+	margin-top:35px;
+	width:900px;
+	margin-left:251px;
+	height:50px;
+	background-color: #eee;
+	bottom:0px;
+}
+.aaa{
+	margin-left:600px;
+}
+#buy b{
+	
+	font-size:22px;
+	color:#ff0022;
+}
+.jie{
+	margin-top:8px;
+	width:60px;
+	font-size:18px;
+	height:32px;
+}

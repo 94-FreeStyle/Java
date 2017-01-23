@@ -1,0 +1,44 @@
+body{
+	margin:0;
+	padding:0;
+}
+#all{
+	margin-top:auto;
+	margin-left:auto;
+	height:100px;
+	width:1060px;	
+}
+#til{
+	position:absolute;
+	margin-top:15px;
+	margin-left:-160px;
+	font-size:32px;
+	letter-spacing: 5px;
+}
+#fun{
+	position:absolute;
+	margin-top:10px;
+	margin-left:518px;
+	font-size:18px;
+}
+#user{
+	position:absolute;
+	margin-top:60px;
+	margin-left:740px;
+	font-size:16px;
+}
+a {
+	text-decoration: none;
+}
+
+a:link {
+	color: #03a;
+}
+
+a:visited {
+	color: #03a;
+}
+
+a:hover {
+	color: #a5e;
+}

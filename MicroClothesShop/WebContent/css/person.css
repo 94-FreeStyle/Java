@@ -1,0 +1,173 @@
+body {
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:link {
+	color: #fff;
+}
+
+a:visited {
+	color: #03a;
+}
+
+a:hover {
+	color: #a5e;
+}
+
+#top {
+	margin-top: 0;
+	margin-left: 0;
+	height: 40px;
+	width: 100%;
+	background-color: #eee;
+}
+
+.shou {
+	margin-left: 180px;
+	margin-top: 8;
+}
+
+.tou {
+	margin-left: 780px;
+	margin-top: 13px;
+}
+
+#all {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0px;
+	width: 1000px;
+	background-color: #eee;
+	border: 1px dashed #aaa;
+}
+#left{
+	margin-left: 0;
+	width: 260px;
+	//border-style:dotted solid double dashed;
+	border-right: 1px dashed #aaa;
+	height:940px;
+}
+#right{
+	position:absolute;
+	margin-left: 436px;
+	margin-top:-916px;
+	border-bottom: 1px dashed #aaa;
+	z-index:8;
+}
+#mess{
+	height:40px;
+	width:260px;
+	margin-left: 2px;
+	border-bottom: 1px dashed #aaa;
+}
+#mess p{
+	margin-left:60px;
+	margin-top:5px;
+	font-size:28px;
+	color:#1177cc;
+	letter-spacing: 7px;
+	
+}
+#wmess{
+	height:35px;
+	width:738px;
+	margin-left:2px;
+}
+#wmess p{
+	margin-top:10px;
+	margin-left:280px;
+	font-size:28px;
+	color:#2266ff;
+	letter-spacing: 10px;
+}
+#tou{
+	margin-left:50px;
+	margin-top:30px;
+	width:142px;
+	height:142px;
+	overflow:hidden;
+	border-radius:71px;
+	border-bottom:1px dashed #aaa;
+}
+#name{
+	color:#5599ee;
+	font-size:18px;	
+	width:260px;
+	border-bottom:1px dashed #aaa;
+}
+#name p{
+	margin-left:80px;
+}
+#xinxi{
+	margin-top:16px;
+	border-bottom:1px dashed #aaa;
+}
+#xinxi table{
+	color:#3377ff;
+	font-size:13px;
+	margin-left:14px;
+	margin-bottom:20px;
+}
+#xinxi tr{
+	height:30px;
+}
+#ou{
+	margin-top:16px;
+}
+#ou table{
+	margin-left:14px;
+	color:#3377ff;
+	font-size:14px;
+}
+#ou tr{
+	height:30px;
+}
+#ou td{
+	width:120px:
+}
+#til{
+	width:260px;
+	height:40px;
+	margin-top:-10px;
+	border-bottom:1px dashed #aaa;
+}
+#til p{
+	margin-left:30px;
+	color:#3377ff;
+	font-size:22px;
+	letter-spacing: 6px;
+}
+#ou img{
+	border-radius:15px;
+}
+#sr{
+	margin-top:-25px;
+	height:440px;
+	width:737px;
+	margin-left:0px;
+	overflow:hidden;
+}
+#tui{
+	height:490px;
+	width:737px;
+	margin-left:0px;
+	overflow:hidden;
+	margin-bottom:40px;
+}
+.ts{
+	height:30px;
+	width:740px;
+	background-color: #ccc;
+}
+.ts b{
+	margin-top:1px;
+	margin-left:350px;
+	letter-spacing:5px;
+	color:#3377ff;
+	font-size:16px;
+}

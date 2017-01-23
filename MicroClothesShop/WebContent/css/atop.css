@@ -1,0 +1,49 @@
+body {
+	background-color: #eee;
+	margin: 0;
+	padding: 0;
+	border-buttom: 1px solid #999;
+}
+
+.title {
+	margin-top: 40px;
+	font-size: 28px;
+	text-align: center;
+	letter-spacing: 4px;
+}
+
+.wel {
+	margin-left: 140px;
+	margin-top: 20px;
+	font-size: 15px;
+}
+.wel b{
+	margin-right:35px;
+	font-size:17px;
+	letter-spacing: 5px;
+}
+.adminn{
+	margin-left:300px;
+}
+#back {
+	width: 70px;
+	height: 25px;
+	margin-left: 1100px;
+	margin-top: -20px;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:link {
+	color: #ff0000;
+}
+
+a:visited {
+	color: #03a;
+}
+
+a:hover {
+	color: #a5e;
+}

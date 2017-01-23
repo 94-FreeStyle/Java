@@ -1,0 +1,148 @@
+body {
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:link {
+	color: #fff;
+}
+
+a:visited {
+	color: #03a;
+}
+
+a:hover {
+	color: #a5e;
+}
+
+#top {
+	margin-top: 0;
+	margin-left: 0;
+	height: 40px;
+	width: 100%;
+	background-color: #eee;
+}
+
+.shou {
+	margin-left: 180px;
+	margin-top: 8;
+}
+
+.tou {
+	margin-left: 780px;
+	margin-top: 13px;
+}
+
+#all {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0px;
+	width: 900px;
+}
+
+#address {
+	margin-top: 0px;
+	width: 100%;
+	height: 120px;
+	background-color: #eee;
+}
+
+#mess {
+	margin-top: 5px;
+	width: 100%;
+	background-color: #eee;
+}
+
+.jie {
+	margin-top: 8px;
+	width: 60px;
+	font-size: 18px;
+	height: 32px;
+}
+
+#con {
+	margin-left: 240px;
+	margin-top: 75px;
+}
+
+.biaoti {
+	margin-left: 0px;
+	margin-top: -25px;
+	width: 100%;
+	background-color: #eee;
+	border-bottom: 1px solid #aaa;
+}
+
+.tiii {
+	font-size: 24px;
+	margin-left: 11px;
+	text-indent: 7px;
+}
+
+.tii {
+	font-size: 19px;
+	margin-left: 51px;
+}
+
+#bank {
+	margin-top: 10px;
+	width: 100%;
+	height: 300px;
+	background-color: #eee;
+}
+
+#bank td {
+	width: 295px;
+}
+
+#bank tr {
+	height: 75px;
+}
+
+.tt {
+	border: 1px solid #eee;
+}
+
+.ttr {
+	height: 150px;
+}
+
+.t1 {
+	width: 215px;
+}
+
+.t5 {
+	width: 215px;
+}
+
+.t2 {
+	width: 215px;
+}
+
+.t3 {
+	width: 215px;
+}
+
+.t4 {
+	width: 215px;
+}
+
+#buy {
+	margin-top: 0px;
+	height: 50px;
+	width: 100%;
+	background-color: #eee;
+}
+
+.aaa {
+	margin-left: 600px;
+}
+
+#buy b {
+	font-size: 22px;
+	color: #ff0022;
+}

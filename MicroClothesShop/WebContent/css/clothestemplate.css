@@ -1,0 +1,46 @@
+body{
+	padding:0;
+	margin:0;
+	border:1px solid #666;
+}
+#all {
+	margin-top:40px ;
+	margin-left:200px;
+	marginright:auto;
+	height: 100%;
+	width: 1060px;;
+}
+.iam{
+	width:600px;
+}
+.tutu{
+	border:1px solid #666;
+}
+tr{
+	height:38px;
+}
+td{
+	width:500px;
+}
+.biao{
+	font-size:13px;
+	color:#aaa;
+	
+}
+.yim{
+	font-size:20px;
+	color:#000;
+	letter-spacing: 4px;
+}
+.jian{
+	font-size:20px;
+	color:#ffaa99;
+}
+.jia{
+	font-size:25px;
+	color:#ff3311;
+}
+.ku{
+	font-size:15px;
+	color:#ffaa22;
+}

@@ -1,0 +1,109 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.all {
+	margin-left: auto;
+	margin-right: auto;
+	height: 100%;
+	width: 1060px;
+}
+
+#query {
+	position: absolute;
+	height: 125px;
+	width: 1060px;
+	border: 1px solid #eee;
+}
+
+#query p {
+	text-indent: 35px;
+}
+.zhan {
+	position: absolute;
+	margin-top: 125px;
+	height: 50px;
+	width: 1060px;
+	border:1px solid #eee;
+}
+.zhan p{
+	position: absolute;
+	text-indent: 10px;
+	letter-spacing: 8px;
+	font-size: 24px;
+	margin-top:8px;
+	margin-left:30px;
+}
+#con {
+	position: absolute;
+	margin-top: 200px;
+	height: 330px;
+	width: 1060px;
+	overflow: auto;
+}
+
+
+#con tr {
+	height: 120px;
+	cursor: pointer;
+	border-bottom: 1px solid #666;
+}
+
+#con td {
+	width: 250px;
+	border-right: 1px solid #eee;
+}
+
+hr {
+	color: #eee;
+}
+
+.cimg {
+	font-size: 18px;
+}
+
+.brand {
+	font-size: 14px;
+}
+
+.styles {
+	font-size: 12px;
+	color: #00aaff;
+}
+
+.price {
+	font-size: 16px;
+	color: #ff0000;
+}
+
+#ye {
+	position: absolute;
+	margin-top: 536px;
+	height: 42px;
+	width: 1060px;
+	background-color:#fff;
+	border: 1px solid #eee;
+}
+
+#ye p {
+	position: absolute;
+	margin-left: 400px;
+}
+
+a {
+	text-decoration: none;
+	cursor:pointer;
+}
+
+a:link {
+	color: #03a;
+}
+
+a:visited {
+	color: #03a;
+}
+
+a:hover {
+	color: #a5e;
+}

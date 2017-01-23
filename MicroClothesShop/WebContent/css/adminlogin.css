@@ -1,0 +1,38 @@
+body{
+	margin:0;
+	padding:0;
+	background-color: #ddd;
+}
+#login{
+	position:absolute;
+	margin-left:540px;
+	margin-top:180px;
+}
+#photo{
+	position:absolute;
+	margin-left:92px;
+	margin-top:-35px;
+	border:1px solid #666;
+	border-radius:50px;
+	width:101px;
+	height:101px;
+	z-index: 8;
+	overflow:hidden;
+}
+#con{
+	position:absolute;
+	border:1px solid #eee;
+	border-radius:10px;
+	width:281px;
+	height:201px;
+	background-color: #eee;
+}
+p{
+	position:absolute;
+	font-size:12px;
+	margin-left:160px;
+	margin-top:-32px;
+}
+a{
+	text-decoration: none;
+}
