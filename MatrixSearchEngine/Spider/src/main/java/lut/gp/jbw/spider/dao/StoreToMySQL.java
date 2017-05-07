@@ -3,8 +3,6 @@ package lut.gp.jbw.spider.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -17,7 +15,7 @@ public class StoreToMySQL {
 
     public static void storeURL(String url, String localPath) {
         try {
-            sql = "insert into spider(url, local_path) values(?,?)";
+            sql = "insert into page_url(url, local_path) values(?,?)";
             PreparedStatement sta = conn.prepareStatement(sql);
             sta.setString(1, url);
             sta.setString(2, localPath);

@@ -7,7 +7,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>Spider</module>
-        <module>PageParser</module>
+        <module>PageProcess</module>
         <module>MatrixSearchWeb</module>
     </modules>
     <properties>
