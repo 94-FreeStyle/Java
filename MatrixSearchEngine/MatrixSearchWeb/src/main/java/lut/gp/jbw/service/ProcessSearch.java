@@ -6,8 +6,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
 import org.apdplat.word.segmentation.Word;
 import lut.gp.jbw.dao.ExecuteQuery;
 
@@ -17,19 +15,48 @@ import lut.gp.jbw.dao.ExecuteQuery;
  */
 public class ProcessSearch {
 
-    public static List<String> process(List<Word> con) {
-        Map<String, Double> indexs = ExecuteQuery.selectIndex(con);
-        Set<String> urls = indexs.keySet();
-        Map<String, Double> pageranks = ExecuteQuery.selectRank(urls);
+    private static Map<List<Word>, List<Word>> situation = null;//每一种情况（OR）包括必须有的单词列表(AND)和不需要有的单词列表(NOT)
 
-        Map<String, Double> res = new TreeMap<>();
-        for (String url : urls) {
-            double tfidf = indexs.get(url);
-            double pagerank = pageranks.get(url);
-            res.put(url, tfidf + pagerank);
+    public static List<String> process(List<Word> con) {
+        Map<List<Word>, List<Word>> searchCon = bool(con);
+        //结果做集合运算（url:PR, (word:TI...)）...  排名对象（只要包含至少一个查询词）
+        Map<String, List<String>> sortObj = new HashMap<>();
+        for (List<Word> andW : searchCon.keySet()) {
+            Map<String, List<String>> and = ExecuteQuery.selectFromIndex(andW);
+            if (!searchCon.get(andW).isEmpty()) {
+                Map<String, List<String>> not = ExecuteQuery.selectFromIndex(searchCon.get(andW));
+                for (String url : and.keySet()) {
+                    if (not.containsKey(url)) {
+                        and.remove(url);
+                    }
+                }
+            }
+            Map<String, Double> pageranks = ExecuteQuery.selectRank(and.keySet());
+            for (String url : and.keySet()) {
+                if (pageranks.get(url) != null) {
+                    sortObj.put(url + "\1" + pageranks.get(url), and.get(url));
+                } else {
+                    sortObj.put(url + "\1" + 0, and.get(url));
+                }
+            }
         }
-        List<Map.Entry<String, Double>> sortedRes = new ArrayList(res.entrySet());
-        Collections.sort(sortedRes, new Comparator() {  //从大到小排序
+        //排名模型（是不是查询词都包含，都包含计算所有词TF-IDF的和，按照和排序，然后按照PR排，之后按照包含的词多少排）
+        // size+sum(tfidf)+pr
+        Map<String, List<String>> uw = new HashMap<>();
+        Map<String, Double> waitSort = new HashMap<>();
+        for (String url : sortObj.keySet()) {
+            double value = sortObj.get(url).size() + Double.parseDouble(url.split("\1")[1]);
+            List<String> ws = new ArrayList<>();
+            for (String v : sortObj.get(url)) {
+                double ti = Double.parseDouble(v.split("\1")[1]);
+                ws.add(v.split("\1")[0]);
+                value += ti;
+            }
+            waitSort.put(url.split("\1")[0], value);
+            uw.put(url.split("\1")[0], ws);
+        }
+        List<Map.Entry<String, Double>> sortedObj = new ArrayList(waitSort.entrySet());
+        Collections.sort(sortedObj, new Comparator() {  //从大到小排序
             @Override
             public int compare(Object o1, Object o2) {
                 Map.Entry obj1 = (Map.Entry) o1;
@@ -38,16 +65,61 @@ public class ProcessSearch {
             }
         });
         List<String> returnRes = new ArrayList<>();
-        for (Map.Entry entry : sortedRes) {
-            returnRes.add((String) entry.getKey());
+        for (Map.Entry entry : sortedObj) {
+            List<String> wss = uw.get((String) entry.getKey());
+            StringBuilder sb = new StringBuilder();
+            sb.append("\1");
+            for (String s : wss) {
+                sb.append(s);
+                sb.append("\2");
+            }
+            String ss = sb.toString();
+            returnRes.add((String) entry.getKey() + ss.substring(0, ss.length() - 1));
         }
         return returnRes;
     }
-    
-    //必须为大写的单词，防止正真使用这些单词
-    public static Map<String,List<Word>> processSearchCon(String con){
-        Map<String,List<Word>> res = new HashMap<>();
-        
-        return res;
+
+    private static Map<List<Word>, List<Word>> bool(List<Word> searchCon) {
+        situation = new HashMap<>();
+        //请求内容中解析AND OR NOT布尔运算 
+        List<Word> or = new ArrayList<>();
+        //测试 "中国人名helloand AND good秦始皇天下 AND number历史任务 NOT not皇帝国家 OR or二手出卖主 NOT is比亚迪"
+        for (int i = 0; i < searchCon.size(); i++) {
+            or.add(searchCon.get(i));
+            if (searchCon.get(i).getText().equals("OR")) {
+                pb(or, i);
+            }
+        }
+        if (!or.isEmpty()) {
+            pb(or, -1);
+        }
+        if (situation.isEmpty()) {
+            situation.put(searchCon, new ArrayList<Word>());
+        }
+        return situation;
+    }
+
+    private static void pb(List<Word> or, int i) {
+        if (i != -1) {
+            or.remove(i);
+        }
+        List<Word> and = new ArrayList<>();
+        List<Word> not = new ArrayList<>();
+        boolean flag = true;
+        for (int j = 0; j < or.size(); j++) {
+            if (or.get(j).getText().equals("AND")) {
+                flag = true;
+            }
+            if (or.get(j).getText().equals("NOT")) {
+                flag = false;
+            }
+            if (flag && !or.get(j).getText().equals("AND")) {
+                and.add(or.get(j));
+            } else if (!flag && !or.get(j).getText().equals("NOT")) {
+                not.add(or.get(j));
+            }
+        }
+        situation.put(and, not);
+        or.clear();
     }
 }

@@ -31,7 +31,7 @@ public class Paging extends HttpServlet {
         pb.setCurrentPage(pagenum);
         List<ReturnRecord> returnRes = ProcessReturnCon.process(pb);
         if (returnRes != null) {
-            if (pagenum == 1) {
+            if (request.getAttribute("starttime") != null) {
                 long startTime = (Long) request.getAttribute("starttime");
                 long endTime = System.nanoTime();
                 request.getSession().setAttribute("time", (endTime - startTime) / 1000000);

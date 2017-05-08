@@ -11,9 +11,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import lut.gp.jbw.model.ReturnRecord;
+import lut.gp.jbw.service.ProcessSearch;
+import lut.gp.jbw.util.WordSegmenterUtil;
 import org.apdplat.word.segmentation.Word;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -60,5 +61,4 @@ public class ExecuteQueryTest {
             System.out.println(rec.toString());
         }
     }
-
 }

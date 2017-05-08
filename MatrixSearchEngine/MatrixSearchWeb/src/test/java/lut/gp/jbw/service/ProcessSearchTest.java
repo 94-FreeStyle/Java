@@ -1,12 +1,17 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package lut.gp.jbw.service;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import org.apdplat.word.segmentation.Word;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -15,24 +20,47 @@ import org.junit.Test;
  */
 public class ProcessSearchTest {
 
+    public ProcessSearchTest() {
+    }
+
+    @BeforeClass
+    public static void setUpClass() {
+    }
+
+    @AfterClass
+    public static void tearDownClass() {
+    }
+
+    @Before
+    public void setUp() {
+    }
+
+    @After
+    public void tearDown() {
+    }
+
+    /**
+     * Test of process method, of class ProcessSearch.
+     */
     @Test
-    public void testProcessSearch() {
-        Map<String, Double> res = new TreeMap<>();
-        res.put("ba", 0.2322);
-        res.put("fsfs", 3232.8);
-        res.put("fs", 893.9);
-        Set<Map.Entry<String, Double>> set = res.entrySet();
-        List<Map.Entry<String, Double>> sortedRes = new ArrayList(set);
-        Collections.sort(sortedRes, new Comparator() {
-            @Override
-            public int compare(Object o1, Object o2) {
-                Map.Entry obj1 = (Map.Entry) o1;
-                Map.Entry obj2 = (Map.Entry) o2;
-                return ((Double) obj2.getValue()).compareTo((Double) obj1.getValue());
-            }
-        });
-        for (Map.Entry<String, Double> entry : sortedRes) {
-            System.out.println(entry.getKey() + ":" + entry.getValue());
+    public void testProcess() {
+        System.out.println("process");
+        List<Word> con = new ArrayList<>();
+        con.add(new Word("进来"));
+        con.add(new Word("运维"));
+        List<String> result = ProcessSearch.process(con);
+        for (String s : result) {
+            System.out.println(s);
         }
     }
+
+    @Test
+    public void test01() {
+        System.out.println(Math.floor(0.0001));
+        System.out.println(Math.ceil(1 / 60.0));
+        System.out.println(Math.round(0.0001));
+        String xx = "jahfjdahj";
+        System.out.println(xx.substring(0, xx.length()));
+    }
+
 }

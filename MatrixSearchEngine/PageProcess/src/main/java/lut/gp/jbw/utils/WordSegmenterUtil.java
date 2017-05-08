@@ -16,6 +16,10 @@ public class WordSegmenterUtil {
         return WordSegmenter.seg(str);//去掉停止词
     }
 
+    public static List<Word> segmenterWithStopWords(String str) {
+        return WordSegmenter.segWithStopWords(str);
+    }
+
     public static Map<String, Integer> wordCountToMap(List<Word> wl) {
         Map<String, Integer> wc = new HashMap<>();
         wl.forEach((Word word) -> {

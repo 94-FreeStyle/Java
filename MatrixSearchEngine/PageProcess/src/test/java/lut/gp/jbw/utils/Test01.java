@@ -1,8 +1,8 @@
 package lut.gp.jbw.utils;
 
-import java.io.File;
-import java.sql.Timestamp;
-import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import org.apdplat.word.segmentation.Word;
 import org.junit.Test;
 
 /**
@@ -13,11 +13,19 @@ public class Test01 {
 
     @Test
     public void testFile() {
-        File file = new File("F:\\work\\MD5.py");
-        long time = file.lastModified();
-        System.out.println("last modify:" + time);
-        System.out.println("date:" + new Date(time));
-        Timestamp t = new Timestamp(0);
-        System.out.println("xxoo:" + t.toString());
+        String source = "中国人名helloand";
+        List<Word> words = WordSegmenterUtil.segmenterWithStopWords(source);
+        Map<List<Word>, List<Word>> situation = ProcessSearch.bool(words);
+        for (List<Word> andWords : situation.keySet()) {
+            System.out.print("AND:");
+            for (Word w : andWords) {
+                System.out.print(w + "\t");
+            }
+            System.out.print("NOT:");
+            for (Word w : situation.get(andWords)) {
+                System.out.print(w + "\t");
+            }
+            System.out.println("");
+        }
     }
 }

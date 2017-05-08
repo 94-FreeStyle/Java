@@ -9,10 +9,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.concurrent.ConcurrentHashMap;
 import lut.gp.jbw.model.ReturnRecord;
 import lut.gp.jbw.util.dao.ConnectionPoolManager;
+import org.apache.log4j.Logger;
 import org.apdplat.word.segmentation.Word;
 
 /**
@@ -21,6 +21,7 @@ import org.apdplat.word.segmentation.Word;
  */
 public class ExecuteQuery {
 
+    private static final Logger logger = Logger.getLogger(ExecuteQuery.class);
     private static final Connection conn = ConnectionPoolManager.getInstance().getConnection();
     private static String sql = "";
 
@@ -43,7 +44,30 @@ public class ExecuteQuery {
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ExecuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error("", ex);
+        }
+        return res;
+    }
+
+    public static Map<String, List<String>> selectFromIndex(List<Word> words) {
+        Map<String, List<String>> res = new ConcurrentHashMap<>();
+        try {
+            for (Word word : words) {
+                sql = "select page_url, word, tf_idf from inverted_index where word ='" + word.getText() + "'";
+                Statement sta = conn.createStatement();
+                ResultSet rs = sta.executeQuery(sql);
+                while (rs.next()) {
+                    String pageURL = rs.getString("page_url");
+                    if (!res.containsKey(pageURL)) {
+                        res.put(pageURL, new ArrayList<String>());
+                    }
+                    String w = rs.getString("word");
+                    double tfidf = rs.getDouble("tf_idf");
+                    res.get(pageURL).add(w + "\1" + tfidf);
+                }
+            }
+        } catch (SQLException ex) {
+            logger.error("", ex);
         }
         return res;
     }
@@ -52,7 +76,7 @@ public class ExecuteQuery {
         Map<String, Double> res = new HashMap<>();
         try {
             for (String url : urls) {
-                sql = "select page_rank from page_con where url ='" + url + "'";
+                sql = "select page_rank from page_info where url ='" + url + "'";
                 Statement sta = conn.createStatement();
                 ResultSet rs = sta.executeQuery(sql);
                 while (rs.next()) {
@@ -61,7 +85,7 @@ public class ExecuteQuery {
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ExecuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error("", ex);
         }
         return res;
     }
@@ -70,7 +94,7 @@ public class ExecuteQuery {
         List<ReturnRecord> res = new ArrayList<>();
         try {
             for (String url : urls) {
-                sql = "select title, keywords, con, cre_date from page_con where url = '" + url + "'";
+                sql = "select title, keywords, con, cre_date from page_info where url = '" + url + "'";
                 Statement sta = conn.createStatement();
                 ResultSet rs = sta.executeQuery(sql);
                 ReturnRecord rec = new ReturnRecord();
@@ -84,7 +108,7 @@ public class ExecuteQuery {
                 res.add(rec);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ExecuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error("", ex);
         }
         return res;
     }

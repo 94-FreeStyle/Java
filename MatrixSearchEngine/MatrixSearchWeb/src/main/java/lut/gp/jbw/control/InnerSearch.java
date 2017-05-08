@@ -36,9 +36,7 @@ public class InnerSearch extends HttpServlet {
             if (requestParams.length() > 65) {
                 requestParams = requestParams.substring(0, 64);
             }
-            //请求内容中解析AND OR NOT布尔运算
-
-            List<Word> searchCon = WordSegmenterUtil.segmenter(requestParams);
+            List<Word> searchCon = WordSegmenterUtil.segmenterWithStopWords(requestParams);
             List<String> sortedRes = ProcessSearch.process(searchCon);
             PageBean pb = new PageBean();
             pb.setSortedUrls(sortedRes);

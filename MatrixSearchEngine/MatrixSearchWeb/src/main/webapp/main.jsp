@@ -31,73 +31,72 @@
                         <div id="sorry">Sorry! We Can't Provide Anything!</div>
                     </c:when>
                     <c:otherwise>
-                        <p id="tips">矩阵搜索为您搜索到${fn:length(requestScope.res)}条信息，用时${sessionScope.time}毫秒</p>
+                        <p id="tips">矩阵搜索为您搜索到${fn:length(requestScope.pb.sortedUrls)}条信息，用时${sessionScope.time}毫秒</p>
                         <c:forEach items="${requestScope.res}" var="record">  
                             <table border="0" id="rcon">
                                 <tr>
                                     <td class="ha1">
-                                        <a href="<c:url value='/go?url=${record.url}'/>">${record.title}&nbsp;${record.date}</a>
+                                        <a href="<c:url value='/go?url=${record.url}'/>"  target="_blank" style="text-decoration:none;cursor: pointer;">${record.title}&nbsp;${record.date}</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="ha2">                        
-                                       ${record.con}
+                                        ${record.con}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="ha3">
-                                        <a href="<c:url value='/go?url=${record.url}'/>">${record.url}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matrix provide</a>                                 
+                                        <a href="<c:url value='/go?url=${record.url}'/>" target="_blank" style="cursor: pointer;">${record.url}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>jiabowen provide</em>                                 
                                     </td>
                                 </tr>
                             </table>
+                            <br/>
                         </c:forEach>
                     </c:otherwise>
                 </c:choose>           
             </div>
             <c:if test="${requestScope.flag eq 1}">
-                <div id="page">
-                    <p>
-                        第${requestScope.pb.currentPage}页
-                        <c:if test="${requestScope.pb.currentPage > 1}">
-                            <a href="<c:url value='/paging?page=${requestScope.pb.currentPage-1 }'/>">&nbsp;&nbsp;&nbsp;上一页</a>
-                        </c:if>
-                        &nbsp;&nbsp;&nbsp;
-                        <c:set var="begin" value="1" />
-                        <c:set var="end" value="10" />
-                        <c:choose>
-                            <c:when test="${requestScope.pb.totalSize <= 10 }">
-                                <c:set var="begin" value="1" />
-                                <c:set var="end" value="${requestScope.pb.totalSize }" />
-                            </c:when>
-                            <c:otherwise>
-                                <c:choose>
-                                    <c:when test="${requestScope.pb.currentPage-4 < 1}">
-                                        <c:set var="begin" value="1" />
-                                        <c:set var="end" value="10" />
-                                    </c:when>
-                                    <c:when test="${requestScope.pb.currentPage + 5 > requestScope.pb.totalSize}">
-                                        <c:set var="begin" value="${requestScope.pb.totalSize - 9 }" />
-                                        <c:set var="end" value="${requestScope.pb.totalSize}" />
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:set var="begin" value="${requestScope.pb.currentPage - 4}" />
-                                        <c:set var="end" value="${requestScope.pb.currentPage + 5}" />
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:otherwise>
-                        </c:choose>
-                        <c:forEach begin="${begin }" end="${end }" var="i">
+                <div id="page">                 
+                    第${requestScope.pb.currentPage}页
+                    <c:if test="${requestScope.pb.currentPage > 1}">
+                        <a href="<c:url value='/paging?page=${requestScope.pb.currentPage-1 }'/>" style="text-decoration:none;cursor: pointer;">&nbsp;&nbsp;&nbsp;上一页</a>
+                    </c:if>
+                    &nbsp;&nbsp;&nbsp;
+                    <c:set var="begin" value="1" />
+                    <c:set var="end" value="10" />
+                    <c:choose>
+                        <c:when test="${requestScope.pb.totalSize <= 10 }">
+                            <c:set var="begin" value="1" />
+                            <c:set var="end" value="${requestScope.pb.totalSize }" />
+                        </c:when>
+                        <c:otherwise>
                             <c:choose>
-                                <c:when test="${requestScope.pb.currentPage eq i }">${i}</c:when>
+                                <c:when test="${requestScope.pb.currentPage-4 < 1}">
+                                    <c:set var="begin" value="1" />
+                                    <c:set var="end" value="10" />
+                                </c:when>
+                                <c:when test="${requestScope.pb.currentPage + 5 > requestScope.pb.totalSize}">
+                                    <c:set var="begin" value="${requestScope.pb.totalSize - 9 }" />
+                                    <c:set var="end" value="${requestScope.pb.totalSize}" />
+                                </c:when>
                                 <c:otherwise>
-                                    <a href="<c:url value='/paging?page=${i }'/>">[${i}] </a>
+                                    <c:set var="begin" value="${requestScope.pb.currentPage - 4}" />
+                                    <c:set var="end" value="${requestScope.pb.currentPage + 5}" />
                                 </c:otherwise>
                             </c:choose>
-                        </c:forEach>
-                        <c:if test="${requestScope.pb.currentPage < requestScope.pb.totalSize }">
-                            <a href="<c:url value='/paging?page=${requestScope.pb.currentPage+1 }'/>">&nbsp;&nbsp;&nbsp;下一页 </a>
-                        </c:if>
-                    </p>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:forEach begin="${begin }" end="${end }" var="i">
+                        <c:choose>
+                            <c:when test="${requestScope.pb.currentPage eq i }">${i}&nbsp;&nbsp;</c:when>
+                            <c:otherwise>
+                                <a href="<c:url value='/paging?page=${i }'/>" style="text-decoration:none;cursor: pointer;">[${i}]&nbsp;&nbsp; </a>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                    <c:if test="${requestScope.pb.currentPage < requestScope.pb.totalSize }">
+                        <a href="<c:url value='/paging?page=${requestScope.pb.currentPage+1 }'/>" style="text-decoration:none;cursor: pointer;">&nbsp;&nbsp;&nbsp;下一页 </a>
+                    </c:if>                   
                 </div>
             </c:if>
             <div id="bott">

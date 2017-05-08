@@ -11,6 +11,10 @@ import org.apdplat.word.segmentation.Word;
 public class WordSegmenterUtil {
 
     public static List<Word> segmenter(String str) {
+        return WordSegmenter.seg(str);
+    }
+
+    public static List<Word> segmenterWithStopWords(String str) {
         return WordSegmenter.segWithStopWords(str);
     }
 }
