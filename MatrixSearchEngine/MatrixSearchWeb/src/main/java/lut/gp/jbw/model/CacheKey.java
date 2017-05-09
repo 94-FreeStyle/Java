@@ -61,7 +61,7 @@ public class CacheKey {
 
     @Override
     public String toString() {
-        String res = null;
+        String res = "";
         for (String w : this.words) {
             res += w + "\t";
         }
