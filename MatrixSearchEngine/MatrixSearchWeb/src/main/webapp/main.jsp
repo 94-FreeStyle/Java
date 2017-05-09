@@ -19,7 +19,9 @@
     <body>
         <div id="all">
             <div id="heads">
-                <img id="imm" src="/MatrixSearchWeb/IMG/timg.jpg" height="60px" width="160px"/>
+                <a href="/MatrixSearchWeb/index.html" style="text-decoration:none;cursor: pointer;">
+                    <img id="imm" src="/MatrixSearchWeb/IMG/timg.jpg" height="60px" width="160px"/>
+                </a>
                 <form action="/MatrixSearchWeb/search" method="post">	
                     <input type="text" name="search" id="con" placeholder="请输入搜索内容..."/>&nbsp;
                     <input type="submit" value="搜索一下" id="se"/>
@@ -28,10 +30,10 @@
             <div id="bodys">
                 <c:choose>
                     <c:when test="${requestScope.flag eq 0 }">
-                        <div id="sorry">Sorry! We Can't Provide Anything!</div>
+                        <div id="sorry">Sorry! I Can't Provide Anything For You! Waiting Me Process More Page!</div>
                     </c:when>
                     <c:otherwise>
-                        <p id="tips">矩阵搜索为您搜索到${fn:length(requestScope.pb.sortedUrls)}条信息，用时${sessionScope.time}毫秒</p>
+                        <p id="tips">矩阵搜索为您搜索到${fn:length(requestScope.pb.sortedUrls)}条信息，用时${requestScope.time}毫秒</p>
                         <c:forEach items="${requestScope.res}" var="record">  
                             <table border="0" id="rcon">
                                 <tr>
@@ -59,7 +61,7 @@
                 <div id="page">                 
                     第${requestScope.pb.currentPage}页
                     <c:if test="${requestScope.pb.currentPage > 1}">
-                        <a href="<c:url value='/paging?page=${requestScope.pb.currentPage-1 }'/>" style="text-decoration:none;cursor: pointer;">&nbsp;&nbsp;&nbsp;上一页</a>
+                        <a href="<c:url value='/paging?page=${requestScope.pb.currentPage-1 }&con=${requestScope.con}'/>" style="text-decoration:none;cursor: pointer;">&nbsp;&nbsp;&nbsp;上一页</a>
                     </c:if>
                     &nbsp;&nbsp;&nbsp;
                     <c:set var="begin" value="1" />
@@ -90,12 +92,12 @@
                         <c:choose>
                             <c:when test="${requestScope.pb.currentPage eq i }">${i}&nbsp;&nbsp;</c:when>
                             <c:otherwise>
-                                <a href="<c:url value='/paging?page=${i }'/>" style="text-decoration:none;cursor: pointer;">[${i}]&nbsp;&nbsp; </a>
+                                <a href="<c:url value='/paging?page=${i }&con=${requestScope.con}'/>" style="text-decoration:none;cursor: pointer;">[${i}]&nbsp;&nbsp; </a>
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
                     <c:if test="${requestScope.pb.currentPage < requestScope.pb.totalSize }">
-                        <a href="<c:url value='/paging?page=${requestScope.pb.currentPage+1 }'/>" style="text-decoration:none;cursor: pointer;">&nbsp;&nbsp;&nbsp;下一页 </a>
+                        <a href="<c:url value='/paging?page=${requestScope.pb.currentPage+1 }&con=${requestScope.con}'/>" style="text-decoration:none;cursor: pointer;">&nbsp;&nbsp;&nbsp;下一页 </a>
                     </c:if>                   
                 </div>
             </c:if>

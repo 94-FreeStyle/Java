@@ -11,8 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import lut.gp.jbw.model.ReturnRecord;
-import lut.gp.jbw.service.ProcessSearch;
-import lut.gp.jbw.util.WordSegmenterUtil;
 import org.apdplat.word.segmentation.Word;
 import org.junit.Test;
 
@@ -21,18 +19,6 @@ import org.junit.Test;
  * @author vincent
  */
 public class ExecuteQueryTest {
-
-    @Test
-    public void testSelectIndex() {
-        System.out.println("selectIndex");
-        List<Word> words = new ArrayList<>();
-        words.add(new Word("word"));
-        words.add(new Word("name"));
-        Map<String, Double> result = ExecuteQuery.selectIndex(words);
-        for (String k : result.keySet()) {
-            System.out.println(k + ":" + result.get(k));
-        }
-    }
 
     /**
      * Test of selectRank method, of class ExecuteQuery.

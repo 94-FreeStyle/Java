@@ -4,6 +4,9 @@
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
+    <listener>  
+        <listener-class>lut.gp.jbw.listener.InitListening</listener-class>  
+    </listener>
     <servlet>
         <servlet-name>InnerSearch</servlet-name>
         <servlet-class>lut.gp.jbw.control.InnerSearch</servlet-class>

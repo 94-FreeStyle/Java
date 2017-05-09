@@ -13,11 +13,7 @@ import org.apdplat.word.segmentation.Word;
 public class WordSegmenterUtil {
 
     public static List<Word> segmenter(String str) {
-        return WordSegmenter.seg(str);//去掉停止词
-    }
-
-    public static List<Word> segmenterWithStopWords(String str) {
-        return WordSegmenter.segWithStopWords(str);
+        return WordSegmenter.segWithStopWords(str);//去掉停止词
     }
 
     public static Map<String, Integer> wordCountToMap(List<Word> wl) {

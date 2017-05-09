@@ -7,7 +7,6 @@ package lut.gp.jbw.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.apdplat.word.segmentation.Word;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -45,10 +44,10 @@ public class ProcessSearchTest {
     @Test
     public void testProcess() {
         System.out.println("process");
-        List<Word> con = new ArrayList<>();
-        con.add(new Word("进来"));
-        con.add(new Word("运维"));
-        List<String> result = ProcessSearch.process(con);
+        List<String> con = new ArrayList<>();
+        con.add("进来");
+        con.add("运维");
+        List<String> result = ProcessInnerSearch.process(con);
         for (String s : result) {
             System.out.println(s);
         }

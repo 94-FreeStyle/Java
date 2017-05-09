@@ -13,7 +13,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import lut.gp.jbw.model.ReturnRecord;
 import lut.gp.jbw.util.dao.ConnectionPoolManager;
 import org.apache.log4j.Logger;
-import org.apdplat.word.segmentation.Word;
 
 /**
  *
@@ -25,35 +24,11 @@ public class ExecuteQuery {
     private static final Connection conn = ConnectionPoolManager.getInstance().getConnection();
     private static String sql = "";
 
-    /**
-     *
-     * @param words
-     * @return (url,tf-idf)
-     */
-    public static Map<String, Double> selectIndex(List<Word> words) {
-        Map<String, Double> res = new HashMap<>();
-        try {
-            for (Word word : words) {
-                sql = "select page_url, tf_idf from inverted_index where word ='" + word.getText() + "'";
-                Statement sta = conn.createStatement();
-                ResultSet rs = sta.executeQuery(sql);
-                while (rs.next()) {
-                    String pageURL = rs.getString("page_url");
-                    double tfidf = rs.getDouble("tf_idf");
-                    res.put(pageURL, tfidf);
-                }
-            }
-        } catch (SQLException ex) {
-            logger.error("", ex);
-        }
-        return res;
-    }
-
-    public static Map<String, List<String>> selectFromIndex(List<Word> words) {
+    public static Map<String, List<String>> selectFromIndex(List<String> words) {
         Map<String, List<String>> res = new ConcurrentHashMap<>();
         try {
-            for (Word word : words) {
-                sql = "select page_url, word, tf_idf from inverted_index where word ='" + word.getText() + "'";
+            for (String word : words) {
+                sql = "select page_url, word, tf_idf from inverted_index where word ='" + word + "'";
                 Statement sta = conn.createStatement();
                 ResultSet rs = sta.executeQuery(sql);
                 while (rs.next()) {

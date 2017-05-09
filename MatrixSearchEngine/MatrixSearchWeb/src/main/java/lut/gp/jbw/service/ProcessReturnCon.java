@@ -37,6 +37,9 @@ public class ProcessReturnCon {
                 String url = rec.getUrl();
                 String con = rec.getCon().replaceAll("(?m)^\\s*$(\\n|\\r\\n)", "");
                 List<String> kws = uw.get(url);
+                for (String kw : kws) {
+                    rec.setTitle(rec.getTitle().replaceAll(kw, "<samp class=\"tkw\">" + kw + "</samp>"));
+                }
                 String res;
                 if (con.length() > 180) {
                     int how = 180 / kws.size();
@@ -57,7 +60,6 @@ public class ProcessReturnCon {
                         sb.append(cc);
                     }
                     res = pstr(sb.toString(), kws);
-                    System.out.println("con length:" + sb.length() + ":" + res);
                 } else {
                     res = pstr(con, kws);
                 }
@@ -83,7 +85,7 @@ public class ProcessReturnCon {
                 cs = con.substring(j * 60, j * 60 + 60) + "<br/>";
             }
             for (String kw : kws) {
-                cs = cs.replaceAll(kw, "<em class=\"kw\">" + kw + "</em>");
+                cs = cs.replaceAll(kw, "<samp class=\"kw\">" + kw + "</samp>");
             }
             sb.append(cs);
         }
