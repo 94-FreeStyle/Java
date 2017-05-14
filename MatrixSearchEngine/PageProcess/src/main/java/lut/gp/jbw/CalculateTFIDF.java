@@ -25,6 +25,7 @@ public class CalculateTFIDF {
             List<Word> words = WordSegmenterUtil.segmenter(data.get(url));
             tfidfData.put(url, WordSegmenterUtil.wordCountToMap(words));
         });
+        logger.info("preprocess data finshed! start calculate...");
         //调用计算TF-IDF(url,(word, value))
         Map<String, Map<String, Double>> tfidfs = TFIDF.tfidf(tfidfData);
         //更新TF-IDF

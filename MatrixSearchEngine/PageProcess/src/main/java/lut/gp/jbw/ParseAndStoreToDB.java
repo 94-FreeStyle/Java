@@ -19,7 +19,7 @@ public class ParseAndStoreToDB {
 
     public static void store() {
         //得监听目录或者把处理过的文件删除，定时执行
-        String fileDir = "F:/documents/College/gd/data/spider/page/";
+        String fileDir = "E:/Document/College/gd/data/spider/page/";
         File dir = new File(fileDir);
         if (dir.isDirectory()) {
             File[] files = dir.listFiles();

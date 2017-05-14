@@ -14,8 +14,8 @@ public class RunSpider {
 
     public static void main(String[] args) {
         //设置爬取文件的存储路径和备份URL的路径
-        String savePath = "F:/documents/College/gd/data/spider/page/";
-        String backupPath = "F:/documents/College/gd/data/spider/backup/";
+        String savePath = "E:/Document/College/gd/data/spider/page/";
+        String backupPath = "E:/Document/College/gd/data/spider/backup/";
         //初始化爬虫线程
         SpiderInit.init(savePath, backupPath);
         //启动定时备份任务

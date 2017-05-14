@@ -6,13 +6,15 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author vincent Apr 29, 2017 4:26:20 PM
  */
 public class PageRank {
-    
+
+    private static final Logger logger = Logger.getLogger(PageRank.class);
     private final static double DAMPINGfFACTOR = 0.85; //阻尼系数,即α
     private final static int MAXITERATIONS = 100; //最大迭代次数
     private final static double MINDELTA = 0.00001; //确定迭代是否结束的参数,即ϵ
@@ -23,14 +25,14 @@ public class PageRank {
      * @return （url, pagerank）
      */
     public static Map<String, Double> pageRank(Map<String, Set<String>> data) {
+        removeNo(data);
+        logger.info("current outlinks size:" + data.size());
         Map<String, Set<String>> incidents = incidents(data);
-        if (incidents.size() > data.size()) {
-            removeNo(incidents);
-        } else {
-            removeNo(data);
-        }
-        System.out.println("in size:" + incidents.size());
+        removeNo(incidents);
+        logger.info("current incidents size:" + incidents.size());
         Set<String> nodes = incidents.keySet();
+        nodes.retainAll(data.keySet());
+        logger.info("current nodes size:" + incidents.size());
         Map<String, Double> res = new HashMap<>();
         //先将图中没有出链的节点改为对所有节点都有出链
         data.keySet().stream().filter((url) -> (data.get(url).isEmpty())).forEachOrdered((url) -> {
@@ -45,7 +47,7 @@ public class PageRank {
         nodes.forEach((node) -> {
             res.put(node, 1.0 / graphSize);
         });
-        
+
         double dampingValue = (1.0 - DAMPINGfFACTOR) / graphSize;
         for (int i = 0; i < MAXITERATIONS; i++) {
             double change = 0;
@@ -86,15 +88,24 @@ public class PageRank {
         });
         return res;
     }
-    
+
     private static void removeNo(Map<String, Set<String>> vv) {
+        Set<String> vurls = new HashSet<>();
+        //移除掉v中没有在k中出现过的
         vv.keySet().forEach((url) -> {
             Iterator<String> it = vv.get(url).iterator();
             while (it.hasNext()) {
                 String link = it.next();
+                vurls.add(link);
                 if (!vv.keySet().contains(link)) {
                     it.remove();
                 }
+            }
+        });
+        //移除掉k中没有在v中出现过的
+        vv.keySet().forEach((url) -> {
+            if (!vurls.contains(url)) {
+                vv.remove(url);
             }
         });
     }

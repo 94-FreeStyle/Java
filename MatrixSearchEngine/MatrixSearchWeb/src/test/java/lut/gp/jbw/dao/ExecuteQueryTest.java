@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import lut.gp.jbw.model.ReturnRecord;
-import org.apdplat.word.segmentation.Word;
 import org.junit.Test;
 
 /**

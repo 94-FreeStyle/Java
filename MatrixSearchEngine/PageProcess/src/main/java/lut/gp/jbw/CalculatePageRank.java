@@ -18,8 +18,8 @@ public class CalculatePageRank {
     public static void calculate() {
         //保存计算pagerank的数据（url,links）
         Map<String, Set<String>> pageRankData = SearchFromMysql.serachLinks();
-
-        System.out.println("out size:" + pageRankData.size());
+        logger.info("preprocess data finshed! start calculate...");
+        logger.info("origin data size:" + pageRankData.size());
         Map<String, Double> ranks = PageRank.pageRank(pageRankData);
         //更新PageRank
         ranks.keySet().forEach((url) -> {
