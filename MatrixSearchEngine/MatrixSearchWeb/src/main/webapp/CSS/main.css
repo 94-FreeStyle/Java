@@ -1,3 +1,9 @@
+*{
+    margin:0;
+    padding:0;
+    font-family: STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑";
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -6,7 +12,7 @@ body {
 
 #all{
     position:absolute;
-    height:1700px;
+    /* height:1700px; */
     width:100%;
 }
 
@@ -32,20 +38,29 @@ body {
     margin-left:115px;
     font-size:16px;
     text-indent:4px;
-    margin-top:-53px;
+    margin-top:-44px;
 }
 
-#se{
+.btn{
     position:fixed; 
     height:38px;
-    margin-left:620px;
+    margin-left:630px;
     font-size:18px;
+    margin-top:-44px;
+    background-color: hsl(207, 68%, 53%);
     cursor: pointer;
-    margin-top:-53px;
+    color: #fff;
+    font-size: 17px;
+    vertical-align: top;
+    outline: none;
+    border: 0;
+    line-height: 29px;
+    padding: 5px 10px;
 }
 
 #bodys{
-    position:absolute; 
+    /* position:absolute; */
+    min-height: 580px;
     margin-top:80px;
 }
 
@@ -93,24 +108,31 @@ body {
 }
 
 #page{
-    position:absolute;
-    margin-top:1600px;
-    margin-left:120px;
-    width:700px;
+    /* position:absolute; */
+    /* margin-top:1600px; */
+    /* margin: 0 auto; */
+    padding-left: 124px;
+    margin-top: 50px;
+    margin-bottom: 35px;
+    /* width: 100%; */
     font:18px/20px arial,sans-serif;
 }
 
 #bott{
-    position:absolute;
-    margin-top:1650px;
+    /* position: fixed; */
+    /* margin-top: 60px; */
+    bottom: 0;
     font-size:16px;
     height:50px;
-    width:1349px;
+    width: 100%;
     border-top:1px solid #ccc;
     background-color:#ccc;
 }
 
 #bcon{
-    margin-left:500px; 
+    /* margin-left:500px; */
     color:#999;
+    margin: 17px auto 0 10px;
+    text-align: center;
+    /* width: 800px; */
 }

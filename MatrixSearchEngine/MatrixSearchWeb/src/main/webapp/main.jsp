@@ -20,11 +20,11 @@
         <div id="all">
             <div id="heads">
                 <a href="/MatrixSearchWeb/index.html" style="text-decoration:none;cursor: pointer;">
-                    <img id="imm" src="/MatrixSearchWeb/IMG/timg.jpg" height="60px" width="160px"/>
+                    <img id="imm" src="/MatrixSearchWeb/IMG/m_timg.png"/>
                 </a>
                 <form action="/MatrixSearchWeb/search" method="post">	
                     <input type="text" name="search" id="con" placeholder="请输入搜索内容..."/>&nbsp;
-                    <input type="submit" value="搜索一下" id="se"/>
+                    <input type="submit" value="搜索一下" class="btn"/>
                 </form>
             </div>
             <div id="bodys">
