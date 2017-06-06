@@ -1,0 +1,63 @@
+#spider{
+	margin-left:80px;
+	height:153px;
+	width:1200px;
+	border:1px solid #777;
+}
+
+#parser{
+	margin-left:80px;
+	height:150px;
+	width:1000px;
+	border:1px solid #777;
+	padding-top:8px;
+	padding-left:200px;
+}
+
+#index{
+	margin-left:80px;
+	height:110px;
+	width:1000px;
+	border:1px solid #777;
+	padding-top:8px;
+	padding-left:200px;
+}
+
+#pr{
+	margin-left:80px;
+	height:110px;
+	width:1000px;
+	border:1px solid #777;
+	padding-top:8px;
+	padding-left:200px;
+}
+
+#ti{
+	margin-left:80px;
+	height:110px;
+	width:1000px;
+	border:1px solid #777;
+	padding-top:8px;
+	padding-left:200px;
+}
+
+#web{
+	margin-left:80px;
+	height:110px;
+	width:1000px;
+	border:1px solid #777;
+	padding-top:8px;
+	padding-left:200px;
+}
+
+#sleft{
+	position:absolute;
+	margin-left:200px;
+	margin-top:10px;
+}
+
+#sright{
+	position:absolute;
+	margin-left:780px;
+	margin-top:10px;
+}

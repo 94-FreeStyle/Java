@@ -16,9 +16,9 @@ import org.apdplat.word.segmentation.Word;
  * @author vincent May 6, 2017 10:43:36 PM
  */
 public class CalculateIndex {
-    
+
     private static final Logger logger = Logger.getLogger(CalculateIndex.class);
-    private static Timestamp lastProcessTime = new Timestamp(0);
+    private static Timestamp lastProcessTime = new Timestamp(117, 5, 1, 13, 35, 0, 0);
 
     //每一个小时更新一次索引
     public static void calculate() {
@@ -37,7 +37,7 @@ public class CalculateIndex {
             });
         });
     }
-    
+
     public static void main(String[] args) {
         calculate();
     }
