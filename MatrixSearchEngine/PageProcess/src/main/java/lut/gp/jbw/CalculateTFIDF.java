@@ -1,5 +1,7 @@
 package lut.gp.jbw;
 
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,24 +21,33 @@ public class CalculateTFIDF {
     private static final Logger logger = Logger.getLogger(CalculateTFIDF.class);
 
     public static void calculate() {
-        Map<String, Map<String, Integer>> tfidfData = new HashMap<>();
-        Map<String, String> data = SearchFromMysql.serachUC();
-        data.keySet().forEach((url) -> {
-            List<Word> words = WordSegmenterUtil.segmenter(data.get(url));
-            tfidfData.put(url, WordSegmenterUtil.wordCountToMap(words));
-        });
-        logger.info("preprocess data finshed! start calculate...");
-        //调用计算TF-IDF(url,(word, value))
-        Map<String, Map<String, Double>> tfidfs = TFIDF.tfidf(tfidfData);
-        //更新TF-IDF
-        tfidfs.keySet().forEach((url) -> {
-            Map<String, Double> wt = tfidfs.get(url);
-            wt.keySet().forEach((word) -> {
-                double value = wt.get(word);
-                StoreToMysql.storeTFIDF(value, word, url);
-                logger.info(word + ":" + url + ":" + value);
+        String loadPath = "E:\\index.csv";
+        try {
+            final PrintStream ps = new PrintStream(loadPath);
+            Map<String, Map<String, Integer>> tfidfData = new HashMap<>();
+            Map<String, String> data = SearchFromMysql.serachUC();
+            data.keySet().forEach((url) -> {
+                List<Word> words = WordSegmenterUtil.segmenter(data.get(url));
+                tfidfData.put(url, WordSegmenterUtil.wordCountToMap(words));
             });
-        });
+            logger.info("preprocess data finshed! start calculate...");
+            //调用计算TF-IDF(url,(word, value))
+            Map<String, Map<String, Double>> tfidfs = TFIDF.tfidf(tfidfData);
+            //更新TF-IDF
+            tfidfs.keySet().forEach((url) -> {
+                Map<String, Double> wt = tfidfs.get(url);
+                wt.keySet().forEach((word) -> {
+                    double value = wt.get(word);
+                    //StoreToMysql.storeTFIDF(value, word, url);
+                    logger.info(word + ":" + url + ":" + value);
+                    ps.println(word + "," + url + "," + value);
+                    StoreToMysql.loadIndex(loadPath);
+                });
+            });
+            ps.close();
+        } catch (FileNotFoundException ex) {
+            logger.error("", ex);
+        }
     }
 
     public static void main(String[] args) {

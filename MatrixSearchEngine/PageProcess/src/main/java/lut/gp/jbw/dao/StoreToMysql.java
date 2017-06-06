@@ -3,6 +3,7 @@ package lut.gp.jbw.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.Set;
 import lut.gp.jbw.util.dao.ConnectionPoolManager;
@@ -86,6 +87,33 @@ public class StoreToMysql {
             sta.setString(2, word);
             sta.setString(3, url);
             sta.executeUpdate();
+        } catch (SQLException ex) {
+            logger.error("", ex);
+        }
+    }
+
+    public static void loadIndex(String localPath) {
+        logger.info("connected! starting deleting...");
+        deleteIndex();
+        logger.info("deleted! starting store...");
+        try {
+            sql = "LOAD DATA LOCAL INFILE '" + localPath + "' INTO TABLE inverted_index "
+                    + "FIELDS TERMINATED BY ',' "
+                    + "OPTIONALLY ENCLOSED BY \"\" "
+                    + "LINES TERMINATED BY '\n'";
+            Statement sta = conn.createStatement();
+            sta.executeUpdate(sql);
+            logger.info("stored !!!");
+        } catch (SQLException ex) {
+            logger.error("", ex);
+        }
+    }
+
+    private static void deleteIndex() {
+        try {
+            sql = "delete from inverted_index";
+            Statement sta = conn.createStatement();
+            sta.executeUpdate(sql);
         } catch (SQLException ex) {
             logger.error("", ex);
         }
